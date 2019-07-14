@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在浏览器内核里，有一些常驻线程，如下  GUI 渲染线程 JS 引擎线程 定时器触发线程 事件触发线程 http 异步请求线程  GUI 渲染线程当页面需要重绘时，该线程就会被执行。 GUI 渲染线程和 js 引擎线程是互斥的。当 js 引擎线程在执行代码的时候，GUI 渲染线程被冻结。可以用代码测试一下： 123456const wait = function (time) &amp;#123;  co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-14T15:03:51.012Z">
+<meta property="og:updated_time" content="2019-07-14T15:41:25.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器常驻线程分析">
 <meta name="twitter:description" content="在浏览器内核里，有一些常驻线程，如下  GUI 渲染线程 JS 引擎线程 定时器触发线程 事件触发线程 http 异步请求线程  GUI 渲染线程当页面需要重绘时，该线程就会被执行。 GUI 渲染线程和 js 引擎线程是互斥的。当 js 引擎线程在执行代码的时候，GUI 渲染线程被冻结。可以用代码测试一下： 123456const wait = function (time) &amp;#123;  co">
@@ -359,7 +359,7 @@
 <h3 id="JS-引擎线程"><a href="#JS-引擎线程" class="headerlink" title="JS 引擎线程"></a>JS 引擎线程</h3><p>JS 引擎线程负责解析运行 javascript 脚本，在执行代码的过程中若调用一些浏览器 api，就把这些调用浏览器 api 的任务分发给其他相关的线程去运行。运行结束后，这些任务回调函数就会进入任务队列等待。在 js 执行栈为空后，这些任务就通过事件循环进入执行栈运行。</p>
 <h3 id="定时器触发线程"><a href="#定时器触发线程" class="headerlink" title="定时器触发线程"></a>定时器触发线程</h3><p>当 js 主线程执行栈执行了 setTimeout 或 setInterval 时，就会把这个定时任务交给定时器触发线程去执行。计时结束后，把回调函数添加到任务队列里。</p>
 <h3 id="事件触发线程"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h3><p>事件触发线程用来监听一些浏览器的操作，比如鼠标事件、键盘事件。当事件触发后，就把回调函数放入任务队列中。</p>
-<h3 id="HTTP-异步请求线程"><a href="#HTTP-异步请求线程" class="headerlink" title="HTTP 异步请求线程"></a>HTTP 异步请求线程</h3><p>浏览器过程该线程进行 http 请求，在得到相应时，把回调函数放入任务队列中，等待 js 引擎获取执行。</p>
+<h3 id="HTTP-异步请求线程"><a href="#HTTP-异步请求线程" class="headerlink" title="HTTP 异步请求线程"></a>HTTP 异步请求线程</h3><p>该线程负责 http 请求，在得到相应时，把回调函数放入任务队列中，等待 js 引擎获取执行。</p>
 
       
     </div>
