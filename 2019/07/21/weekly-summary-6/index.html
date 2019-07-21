@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="面向对象面向对象三要素 继承：子类继承父类 封装：数据的权限和保密 public：完全开放 protected：对子类和自己开放 private：对自己开放   多态 同一接口，不同表现，例如：父类有一个方法，它的子类们重写了该方法实现了不同的功能 面向接口编程 JS 应用极少 需要结合 JAVA 等语言的接口、重写、重载等功能    UML 类图 Unified Modeling Languag">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习记录一">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/weekly-summary-6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向对象面向对象三要素 继承：子类继承父类 封装：数据的权限和保密 public：完全开放 protected：对子类和自己开放 private：对自己开放   多态 同一接口，不同表现，例如：父类有一个方法，它的子类们重写了该方法实现了不同的功能 面向接口编程 JS 应用极少 需要结合 JAVA 等语言的接口、重写、重载等功能    UML 类图 Unified Modeling Languag">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-6/uml-class.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-6/uml-class-relevance.png">
+<meta property="og:updated_time" content="2019-07-21T14:53:06.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习记录一">
+<meta name="twitter:description" content="面向对象面向对象三要素 继承：子类继承父类 封装：数据的权限和保密 public：完全开放 protected：对子类和自己开放 private：对自己开放   多态 同一接口，不同表现，例如：父类有一个方法，它的子类们重写了该方法实现了不同的功能 面向接口编程 JS 应用极少 需要结合 JAVA 等语言的接口、重写、重载等功能    UML 类图 Unified Modeling Languag">
+<meta name="twitter:image" content="http://yoursite.com/images/weekly-summary-6/uml-class.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/21/weekly-summary-6/">
+
+
+
+
+
+  <title>设计模式学习记录一 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <!-- <a href="https://github.com/hezon"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a> -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/weekly-summary-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaiden">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/headimg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式学习记录一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-21T21:46:25+08:00">
+                2019-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术周报/" itemprop="url" rel="index">
+                    <span itemprop="name">技术周报</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象三要素"><a href="#面向对象三要素" class="headerlink" title="面向对象三要素"></a>面向对象三要素</h3><ul>
+<li>继承：子类继承父类</li>
+<li>封装：数据的权限和保密<ul>
+<li>public：完全开放</li>
+<li>protected：对子类和自己开放</li>
+<li>private：对自己开放</li>
+</ul>
+</li>
+<li>多态<ul>
+<li>同一接口，不同表现，例如：父类有一个方法，它的子类们重写了该方法实现了不同的功能</li>
+<li>面向接口编程</li>
+<li>JS 应用极少</li>
+<li>需要结合 JAVA 等语言的接口、重写、重载等功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h3><ul>
+<li>Unified Modeling Language 统一建模语言</li>
+<li>类图：UML 有很多图，这里指的是类图<ul>
+<li>属性</li>
+<li>方法</li>
+</ul>
+</li>
+<li>关系<ul>
+<li>泛化：类之间的继承</li>
+<li>关联：类之间的引用</li>
+</ul>
+</li>
+</ul>
+<p>类图<br><img src="/images/weekly-summary-6/uml-class.png" alt="类图"></p>
+<p>写一个例子来表示类图的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class People &#123;</span><br><span class="line">  constructor(name, house) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.house = house</span><br><span class="line">  &#125;</span><br><span class="line">  saySomething() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A extends People &#123;</span><br><span class="line">  constructor(name, house) &#123;</span><br><span class="line">    super(name, house)</span><br><span class="line">  &#125;</span><br><span class="line">  saySomething() &#123;</span><br><span class="line">    alert(&apos;I am A.&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends People &#123;</span><br><span class="line">  constructor(name, house) &#123;</span><br><span class="line">    super(name, house)</span><br><span class="line">  &#125;</span><br><span class="line">  saySomething() &#123;</span><br><span class="line">    alert(&apos;I am B.&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class House &#123;</span><br><span class="line">  constructor(city) &#123;</span><br><span class="line">    this.city = city</span><br><span class="line">  &#125;</span><br><span class="line">  showCity() &#123;</span><br><span class="line">    alert(`house in $&#123;this.city&#125;`)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let aHouse = new House(&apos;广州&apos;)</span><br><span class="line">let a = new A(&apos;aaa&apos;, aHouse)</span><br><span class="line">console.log(a) // a 有房子</span><br><span class="line">let b = new B(&apos;bbb&apos;)</span><br><span class="line">console.log(b) // b 无房子</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/weekly-summary-6/uml-class-relevance.png" alt="类图"><br>继承使用空箭头，引用使用实心箭头</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
+<li>何为设计？</li>
+<li>五大设计原则</li>
+<li>从设计到模式</li>
+<li>介绍 23 设计模式</li>
+</ul>
+<h3 id="何为设计"><a href="#何为设计" class="headerlink" title="何为设计"></a>何为设计</h3><ul>
+<li>伴随着需求增加，设计的作用才能体现出来</li>
+<li>《UNIX/LINUX 设计哲学》<ul>
+<li>十大准则<ul>
+<li>小即是美</li>
+<li>让每个程序只做好一件事（大程序拆分成一个个小程序）</li>
+<li>快速建立原型（最基本的功能）</li>
+<li>舍弃搞效率而取可移植性（代码通用，可复制。复用性第一，性能第二。性能也可以通过硬件升级而提高）</li>
+<li>采用纯文本来存储数据（可读性）</li>
+<li>充分利用软件的杠杆效应（软件复用）</li>
+<li>使用 shell 脚本来提高杠杆效应和可移植性</li>
+<li>避免强制性的用户界面（用户界面是作为一个软件而存在的，它不应该存为一个系统的必备项。它的缺点如，占用内存。它可以作为一个插件插入，但不要强制与系统绑定）</li>
+<li>让每个程序都称为过滤器（也就是上面小而美、每个程序做好一件事的意思，就是把数据先到 A 进行处理，之后到 B 进行处理，再到 C。）</li>
+</ul>
+</li>
+<li>其他小准则<ul>
+<li>允许用户定制环境</li>
+<li>尽量是操作系统内核小而轻量化</li>
+<li>使用小写字母并尽量简短</li>
+<li>沉默是金（输入的数据类型不匹配，则输出 null 或空。反例就是，要求输入一个数字，但是没有输入数字会返回”这不是一个数字”）</li>
+<li>各部分之和大于整体（以小的个体组成一个大的整体。作用是，某个部分改变只改该部分，而不是改整个被高度耦合的整体）</li>
+<li>寻求 90% 的解决方案（一个产品不可能满足 100% 的用户需求，我只需要满足 90% 就行了。二八定律，花 20% 的成本解决 80% 的需求，而剩下 20% 的需求就需要花费大量的精力取解决了。）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一个例子：<br>沉默是金 + 让每个程序成为过滤器<br>指令 ls，grep 等就是一个个过滤器，过滤出需要的文件，如果没有匹配的文件控制台就没有输出。</p>
+<h3 id="SOLID-五大设计原则"><a href="#SOLID-五大设计原则" class="headerlink" title="SOLID 五大设计原则"></a>SOLID 五大设计原则</h3><ul>
+<li>S （single）- 单一职责原则<ul>
+<li>一个程序只做一件事</li>
+<li>功能过于复杂就把它拆分开来</li>
+</ul>
+</li>
+<li>O （open） - 开发封闭原则<ul>
+<li>对扩展开发，对修改封闭</li>
+<li>增加需求时，扩展新代码，而非修改已有的代码</li>
+<li>抽象得很合理，这是软件设计的终极目标</li>
+</ul>
+</li>
+<li>L （Liskov） - 李氏置换原则<ul>
+<li>子类能覆盖父类</li>
+<li>所有能用父类的地方，也能用子类代替</li>
+<li>JS 中使用较少（弱类型 &amp; 继承使用较少）</li>
+</ul>
+</li>
+<li>I （interface）- 接口独立原则<ul>
+<li>保持接口的单一独立，避免一个接口做了很多功能</li>
+<li>J- S 中没有接口（typescript 例外），使用较少</li>
+<li>类似于单一职责原则，这里关注接口</li>
+</ul>
+</li>
+<li>D （dependence）- 依赖倒置原则<ul>
+<li>面向接口编程，依赖于抽象而不依赖于具体（合作的时候只关注 UML 类图，内部的实现不用管，你爱怎么实现怎么实现）</li>
+<li>使用方只关注接口，而不是关注具体类的实现</li>
+<li>JS 中使用较少（没有接口 &amp; 弱类型）</li>
+</ul>
+</li>
+</ul>
+<h3 id="从设计到模式"><a href="#从设计到模式" class="headerlink" title="从设计到模式"></a>从设计到模式</h3><ul>
+<li>设计，是设计原则，是指导思想</li>
+<li>模式，结合日常的开发经验总结出来的模板</li>
+<li>设计和模式是分开的</li>
+<li>从设计到模式，设计比模式重要</li>
+</ul>
+<h3 id="介绍-23-设计模式"><a href="#介绍-23-设计模式" class="headerlink" title="介绍 23 设计模式"></a>介绍 23 设计模式</h3><ul>
+<li>创建型<ul>
+<li>工厂模式（JS 中不细分，在其他语言中会把工厂模式细分成三种模式）<ul>
+<li>工厂方法模式</li>
+<li>抽象工厂模式</li>
+<li>建造者模式</li>
+</ul>
+</li>
+<li>单例模式</li>
+<li>原型模式</li>
+</ul>
+</li>
+<li>结构型<ul>
+<li>适配器模式</li>
+<li>装饰器模式</li>
+<li>代理模式</li>
+<li>外观模式</li>
+<li>桥接模式</li>
+<li>组合模式</li>
+<li>享元模式</li>
+</ul>
+</li>
+<li>行为型<ul>
+<li>策略模式</li>
+<li>模板方法模式</li>
+<li>观察者模式</li>
+<li>迭代器模式</li>
+<li>职责连模式</li>
+<li>命令模式</li>
+<li>备忘录模式</li>
+<li>状态模式</li>
+<li>访问者模式</li>
+<li>中介者模式</li>
+<li>解释器模式</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/14/weekly-summary-5/" rel="next" title="浏览器常驻线程分析">
+                <i class="fa fa-chevron-left"></i> 浏览器常驻线程分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/headimg.jpg" alt="Jaiden">
+            
+              <p class="site-author-name" itemprop="name">Jaiden</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象三要素"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象三要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-类图"><span class="nav-number">1.2.</span> <span class="nav-text">UML 类图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为设计"><span class="nav-number">2.1.</span> <span class="nav-text">何为设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-五大设计原则"><span class="nav-number">2.2.</span> <span class="nav-text">SOLID 五大设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从设计到模式"><span class="nav-number">2.3.</span> <span class="nav-text">从设计到模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-23-设计模式"><span class="nav-number">2.4.</span> <span class="nav-text">介绍 23 设计模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaiden</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
