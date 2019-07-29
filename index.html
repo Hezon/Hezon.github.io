@@ -250,6 +250,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/weekly-summary-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaiden">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/headimg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/28/weekly-summary-7/" itemprop="url">从源码分析VUE的生命周期</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-28T21:46:27+08:00">
+                2019-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术周报/" itemprop="url" rel="index">
+                    <span itemprop="name">技术周报</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们从源码上分析VUE官网上这个生命周期示意图。<br><img src="/images/weekly-summary-7/1561882118336-6f803eb8-022a-454f-8fa4-ee2a8acb463e.png" alt="vue生命周期图"></p>
+<p>首先是使用 new Vue(options) 创建一个vm实例，我们来看一下源码：<br><img src="/images/weekly-summary-7/1561882289596-3156e777-8ddc-4beb-b5a8-93ccaffa926e.png" alt="代码示例"><br>源码路径: src/core/instance/index.js</p>
+<p>vue 构造函数内调用了一个 _init 方法，这个方法是在 initMixin 里面创建的。</p>
+<p>我们来看一下 _init 函数的源码：</p>
+<p><img src="/images/weekly-summary-7/1561896468424-ced42a50-bec6-4678-b89d-c46af277bf18.png" alt="代码示例"></p>
+<p>源码路径: src/core/instance/init.js</p>
+<p>_init 方法主要做的事情：  </p>
+<ol>
+<li>执行 mergeOptions 方法，合并 Vue 构造函数的 options 和 传入的 options，或者是合并父子的 options。</li>
+<li>在执行钩子函数 beforeCreate 之前，执行初始化生命周期、事件、渲染相关函数。(图中的 init Events &amp; Lifecycle)</li>
+<li>在执行钩子函数 created 之前，执行相关初始化函数，初始化inject、props、data、methods、watch、computed、provide等属性。(图中的 init injection &amp; reactivity)</li>
+<li>判断 options 是否存在 el，如果存在，调用 $mount 方法挂载 el。（图中的 has “el” option?）</li>
+</ol>
+<p>我们来看一下 $mount 方法的部分源码<br><img src="/images/weekly-summary-7/1561897331089-f4f8d7d9-d444-4980-b349-0795e0942ebe.png" alt="代码示例"><br>源码路径: src/platforms/web/entry-runtime-with-compiler.js</p>
+<p>$mount 方法主要做的事情：  </p>
+<ol>
+<li>判断 options 是否存在 render 方法。</li>
+<li>如果不存在，则判断 options 是否存在 template。（图中的 Has “template” option?）</li>
+<li>如果 template 存在，在确定 template 的值后，通过执行 compileToFunctions 把template 转为 render 函数。（图中的 Compile template into render function*）</li>
+<li>如果 template 不存在，执行 getOuterHTML 给 template 重新赋值。（图中的 Compile el’s outerHTML as template*）</li>
+<li>执行旧的 $mount 方法。</li>
+</ol>
+<p>旧的 $mount 方法源码如下<br><img src="/images/weekly-summary-7/1561899476277-38b0f9a6-cf1e-46e6-b870-68eb7982cf91.png" alt="代码示例"><br>源码路径: src/platforms/web/runtime/index.js</p>
+<p>$mount 方法执行了 mountComponent 方法。</p>
+<p>mountComponent 方法的源码如下<br><img src="/images/weekly-summary-7/1561902387421-0869402b-bf37-439a-99f1-e5c91d6ecd64.png" alt="代码示例"><br>源码路径: src/core/instance/lifecycle.js</p>
+<p>mountComponent 主要做的事情：</p>
+<ol>
+<li>绑定 vm.$el 为 el。（图中 Create vm.$el and replace ‘el’ with it）</li>
+<li>调用 beforeMount 构造函数。</li>
+<li>创建 updateComponent 函数，当调用该方法的时候，执行 vm.<em>render 方法，生成虚拟 DOM，再调用 vm.<em>update 方法，这个方法内执行 vm.__patch</em></em> 方法。</li>
+<li>new 一个 Watcher 用来监听数据变化，在 before 方法内调用 beforeUpdate 钩子函数。</li>
+<li>调用 mounted 构造函数。</li>
+</ol>
+<p>当数据更新的时候，调用 Watcher 内的 update 方法，接着执行 queueWatcher 方法，最后在 nextTick 执行 flushSchedulerQueue 方法，在该方法内调用 watcher.before 和 callUpdatedHooks。<br>watcher.before 执行 beforeUpdate 钩子函数。<br>callUpdatedHooks 执行 updated 钩子函数。</p>
+<p>callUpdatedHooks 的源码<br><img src="/images/weekly-summary-7/1561904018560-9c0802ba-74c0-429a-8fe1-97ca6b590ac5.png" alt="代码示例"><br>源码地址: src/core/observer/scheduler.js</p>
+<p>最后，我们来看一下 vm.$destrory 的源码<br><img src="/images/weekly-summary-7/1561903754869-3d3e7518-5eb6-4eed-85af-ec8e59766284.png" alt="代码示例"><br>源码地址: src/core/instance/lifecycle.js</p>
+<p>$destroy 函数主要做了:</p>
+<ol>
+<li>调用 beforeDestroy 钩子函数。</li>
+<li>销毁 watcher、child components、event listener</li>
+<li>调用 destroyed 钩子函数</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/weekly-summary-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1431,7 +1614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1453,7 +1636,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

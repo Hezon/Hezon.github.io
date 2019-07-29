@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="web,">
+  <meta name="keywords" content="vue,">
 
 
 
@@ -79,18 +79,27 @@
 
 
 
-<meta name="description" content="在web诞生之初，它只是一个纯静态页面，只能提供展示作用。 之后，CGI出现，让网页有了动态元素。 再之后，PHP、ASP、JSP等技术的出现，它们更好的组织了web内容。 后来，MVC架构的概念被引入到web开发中来。模型Model用于封装与业务逻辑相关的数据和数据处理方法，视图View是数据的HTML展现，控制器Controller负责响应请求，协调Model和View。 接下来就是SPA时代">
-<meta name="keywords" content="web">
+<meta name="description" content="我们从源码上分析VUE官网上这个生命周期示意图。 首先是使用 new Vue(options) 创建一个vm实例，我们来看一下源码：源码路径: src/core/instance/index.js vue 构造函数内调用了一个 _init 方法，这个方法是在 initMixin 里面创建的。 我们来看一下 _init 函数的源码：  源码路径: src/core/instance/init.js">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web技术演化">
-<meta property="og:url" content="http://yoursite.com/2019/06/29/weekly-summary-1/index.html">
+<meta property="og:title" content="从源码分析VUE的生命周期">
+<meta property="og:url" content="http://yoursite.com/2019/07/28/weekly-summary-7/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在web诞生之初，它只是一个纯静态页面，只能提供展示作用。 之后，CGI出现，让网页有了动态元素。 再之后，PHP、ASP、JSP等技术的出现，它们更好的组织了web内容。 后来，MVC架构的概念被引入到web开发中来。模型Model用于封装与业务逻辑相关的数据和数据处理方法，视图View是数据的HTML展现，控制器Controller负责响应请求，协调Model和View。 接下来就是SPA时代">
+<meta property="og:description" content="我们从源码上分析VUE官网上这个生命周期示意图。 首先是使用 new Vue(options) 创建一个vm实例，我们来看一下源码：源码路径: src/core/instance/index.js vue 构造函数内调用了一个 _init 方法，这个方法是在 initMixin 里面创建的。 我们来看一下 _init 函数的源码：  源码路径: src/core/instance/init.js">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-29T02:24:38.290Z">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561882118336-6f803eb8-022a-454f-8fa4-ee2a8acb463e.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561882289596-3156e777-8ddc-4beb-b5a8-93ccaffa926e.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561896468424-ced42a50-bec6-4678-b89d-c46af277bf18.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561897331089-f4f8d7d9-d444-4980-b349-0795e0942ebe.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561899476277-38b0f9a6-cf1e-46e6-b870-68eb7982cf91.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561902387421-0869402b-bf37-439a-99f1-e5c91d6ecd64.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561904018560-9c0802ba-74c0-429a-8fe1-97ca6b590ac5.png">
+<meta property="og:image" content="http://yoursite.com/images/weekly-summary-7/1561903754869-3d3e7518-5eb6-4eed-85af-ec8e59766284.png">
+<meta property="og:updated_time" content="2019-07-29T01:27:16.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web技术演化">
-<meta name="twitter:description" content="在web诞生之初，它只是一个纯静态页面，只能提供展示作用。 之后，CGI出现，让网页有了动态元素。 再之后，PHP、ASP、JSP等技术的出现，它们更好的组织了web内容。 后来，MVC架构的概念被引入到web开发中来。模型Model用于封装与业务逻辑相关的数据和数据处理方法，视图View是数据的HTML展现，控制器Controller负责响应请求，协调Model和View。 接下来就是SPA时代">
+<meta name="twitter:title" content="从源码分析VUE的生命周期">
+<meta name="twitter:description" content="我们从源码上分析VUE官网上这个生命周期示意图。 首先是使用 new Vue(options) 创建一个vm实例，我们来看一下源码：源码路径: src/core/instance/index.js vue 构造函数内调用了一个 _init 方法，这个方法是在 initMixin 里面创建的。 我们来看一下 _init 函数的源码：  源码路径: src/core/instance/init.js">
+<meta name="twitter:image" content="http://yoursite.com/images/weekly-summary-7/1561882118336-6f803eb8-022a-454f-8fa4-ee2a8acb463e.png">
 
 
 
@@ -120,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/29/weekly-summary-1/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/28/weekly-summary-7/">
 
 
 
 
 
-  <title>web技术演化 | Hexo</title>
+  <title>从源码分析VUE的生命周期 | Hexo</title>
   
 
 
@@ -254,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/weekly-summary-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/weekly-summary-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jaiden">
@@ -271,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">web技术演化</h1>
+          <h1 class="post-title" itemprop="name headline">从源码分析VUE的生命周期</h1>
         
 
         <div class="post-meta">
@@ -283,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T10:24:38+08:00">
-                2019-06-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-28T21:46:27+08:00">
+                2019-07-28
               </time>
             
 
@@ -343,17 +352,48 @@
       
 
       
-        <p>在web诞生之初，它只是一个纯静态页面，只能提供展示作用。</p>
-<p>之后，CGI出现，让网页有了动态元素。</p>
-<p>再之后，PHP、ASP、JSP等技术的出现，它们更好的组织了web内容。</p>
-<p>后来，MVC架构的概念被引入到web开发中来。模型Model用于封装与业务逻辑相关的数据和数据处理方法，视图View是数据的HTML展现，控制器Controller负责响应请求，协调Model和View。</p>
-<p>接下来就是SPA时代。AJAX的出现使得页面可以进行局部刷新，而不是每次请求新的页面。</p>
-<p>但是浏览器对AJAX的支持存在兼容问题。为了解决浏览器的各种兼容问题， jQuery 横空出世。</p>
-<p>随着需求越来越复杂，系统功能越来越多，代码文件也越来越多，相互之间的依赖调用关系变得异常复杂。这时候有两个问题变得十分突出，js命名冲突问题和资源加载问题。这时出现了seajs、requirejs等模块化技术。</p>
-<p>当一个系统的模块越来越多之后，模块内部的代码维护便是个大问题，为了让模块代码变得清晰，更易维护，相互之间没有紧密的耦合关系，MVC被应用到了前端。比如backbone.js。</p>
-<p>后来前端架构继续演化，出现了MVVM模式，实现了双向数据绑定。开发者可以从的dom操作中解放出来。代表技术如 Vue。</p>
-<p>传统的MV*框架存在着数据流不清晰的问题，因为View和Model直接的通信往往都是双向的。因此为了让数据流更加清楚，Facebook提出了单向数据流的Flux架构。</p>
-<p>参考文章：<br><a href="https://blog.rsuitejs.com/2017/07/31/modern-front-end-develop/" target="_blank" rel="noopener">https://blog.rsuitejs.com/2017/07/31/modern-front-end-develop/</a><br><a href="https://blog.coderzh.com/2015/11/07/front-end-dev/" target="_blank" rel="noopener">https://blog.coderzh.com/2015/11/07/front-end-dev/</a><br><a href="https://www.tianmaying.com/blog/8ab3eda84daf4e54014daf68ff09000b" target="_blank" rel="noopener">https://www.tianmaying.com/blog/8ab3eda84daf4e54014daf68ff09000b</a><br><a href="https://javascript.ruanyifeng.com/introduction/history.html" target="_blank" rel="noopener">https://javascript.ruanyifeng.com/introduction/history.html</a><br><a href="https://www.jishuwen.com/d/2UXl" target="_blank" rel="noopener">https://www.jishuwen.com/d/2UXl</a></p>
+        <p>我们从源码上分析VUE官网上这个生命周期示意图。<br><img src="/images/weekly-summary-7/1561882118336-6f803eb8-022a-454f-8fa4-ee2a8acb463e.png" alt="vue生命周期图"></p>
+<p>首先是使用 new Vue(options) 创建一个vm实例，我们来看一下源码：<br><img src="/images/weekly-summary-7/1561882289596-3156e777-8ddc-4beb-b5a8-93ccaffa926e.png" alt="代码示例"><br>源码路径: src/core/instance/index.js</p>
+<p>vue 构造函数内调用了一个 _init 方法，这个方法是在 initMixin 里面创建的。</p>
+<p>我们来看一下 _init 函数的源码：</p>
+<p><img src="/images/weekly-summary-7/1561896468424-ced42a50-bec6-4678-b89d-c46af277bf18.png" alt="代码示例"></p>
+<p>源码路径: src/core/instance/init.js</p>
+<p>_init 方法主要做的事情：  </p>
+<ol>
+<li>执行 mergeOptions 方法，合并 Vue 构造函数的 options 和 传入的 options，或者是合并父子的 options。</li>
+<li>在执行钩子函数 beforeCreate 之前，执行初始化生命周期、事件、渲染相关函数。(图中的 init Events &amp; Lifecycle)</li>
+<li>在执行钩子函数 created 之前，执行相关初始化函数，初始化inject、props、data、methods、watch、computed、provide等属性。(图中的 init injection &amp; reactivity)</li>
+<li>判断 options 是否存在 el，如果存在，调用 $mount 方法挂载 el。（图中的 has “el” option?）</li>
+</ol>
+<p>我们来看一下 $mount 方法的部分源码<br><img src="/images/weekly-summary-7/1561897331089-f4f8d7d9-d444-4980-b349-0795e0942ebe.png" alt="代码示例"><br>源码路径: src/platforms/web/entry-runtime-with-compiler.js</p>
+<p>$mount 方法主要做的事情：  </p>
+<ol>
+<li>判断 options 是否存在 render 方法。</li>
+<li>如果不存在，则判断 options 是否存在 template。（图中的 Has “template” option?）</li>
+<li>如果 template 存在，在确定 template 的值后，通过执行 compileToFunctions 把template 转为 render 函数。（图中的 Compile template into render function*）</li>
+<li>如果 template 不存在，执行 getOuterHTML 给 template 重新赋值。（图中的 Compile el’s outerHTML as template*）</li>
+<li>执行旧的 $mount 方法。</li>
+</ol>
+<p>旧的 $mount 方法源码如下<br><img src="/images/weekly-summary-7/1561899476277-38b0f9a6-cf1e-46e6-b870-68eb7982cf91.png" alt="代码示例"><br>源码路径: src/platforms/web/runtime/index.js</p>
+<p>$mount 方法执行了 mountComponent 方法。</p>
+<p>mountComponent 方法的源码如下<br><img src="/images/weekly-summary-7/1561902387421-0869402b-bf37-439a-99f1-e5c91d6ecd64.png" alt="代码示例"><br>源码路径: src/core/instance/lifecycle.js</p>
+<p>mountComponent 主要做的事情：</p>
+<ol>
+<li>绑定 vm.$el 为 el。（图中 Create vm.$el and replace ‘el’ with it）</li>
+<li>调用 beforeMount 构造函数。</li>
+<li>创建 updateComponent 函数，当调用该方法的时候，执行 vm.<em>render 方法，生成虚拟 DOM，再调用 vm.<em>update 方法，这个方法内执行 vm.__patch</em></em> 方法。</li>
+<li>new 一个 Watcher 用来监听数据变化，在 before 方法内调用 beforeUpdate 钩子函数。</li>
+<li>调用 mounted 构造函数。</li>
+</ol>
+<p>当数据更新的时候，调用 Watcher 内的 update 方法，接着执行 queueWatcher 方法，最后在 nextTick 执行 flushSchedulerQueue 方法，在该方法内调用 watcher.before 和 callUpdatedHooks。<br>watcher.before 执行 beforeUpdate 钩子函数。<br>callUpdatedHooks 执行 updated 钩子函数。</p>
+<p>callUpdatedHooks 的源码<br><img src="/images/weekly-summary-7/1561904018560-9c0802ba-74c0-429a-8fe1-97ca6b590ac5.png" alt="代码示例"><br>源码地址: src/core/observer/scheduler.js</p>
+<p>最后，我们来看一下 vm.$destrory 的源码<br><img src="/images/weekly-summary-7/1561903754869-3d3e7518-5eb6-4eed-85af-ec8e59766284.png" alt="代码示例"><br>源码地址: src/core/instance/lifecycle.js</p>
+<p>$destroy 函数主要做了:</p>
+<ol>
+<li>调用 beforeDestroy 钩子函数。</li>
+<li>销毁 watcher、child components、event listener</li>
+<li>调用 destroyed 钩子函数</li>
+</ol>
 
       
     </div>
@@ -371,7 +411,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/web/" rel="tag"># web</a>
+            <a href="/tags/vue/" rel="tag"># vue</a>
           
         </div>
       
@@ -384,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/29/weekly-summary-3/" rel="next" title="JavaScript数据结构与算法学习总结二">
-                <i class="fa fa-chevron-left"></i> JavaScript数据结构与算法学习总结二
+              <a href="/2019/07/21/weekly-summary-6/" rel="next" title="设计模式学习记录一">
+                <i class="fa fa-chevron-left"></i> 设计模式学习记录一
               </a>
             
           </div>
@@ -393,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/29/weekly-summary-2/" rel="prev" title="JavaScript数据结构与算法学习总结一">
-                JavaScript数据结构与算法学习总结一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
